@@ -14,16 +14,18 @@ try {
 }      //将一个目录里面任意后缀的文件统一全部引入到当前文件
 
 export default {
-  props:['name'],
+  props: ['name'],
   name: 'icon'
 };
 </script>
 
 <style lang="scss" scoped>
-.icon{
-  width: 1em; height: 1em;
+.icon {
+  width: 1em;
+  height: 1em;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
+
 }
 </style>
