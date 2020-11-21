@@ -1,3 +1,4 @@
+
 <template>
   <nav>
     <router-link to="/labels" class="item" active-class="selected">
@@ -42,9 +43,9 @@ nav {
       width: 32px;
     }
   }
-
+  @import "~@/assets/style/helper.scss";
   > .item.selected {
-    color: red;
+    color:$color-highlight;
   }
 }
 
