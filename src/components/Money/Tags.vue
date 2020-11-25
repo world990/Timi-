@@ -17,7 +17,7 @@ import {Component, Prop} from 'vue-property-decorator';
 
 @Component
 export default class Tags extends Vue {
-  @Prop() dataSource: string[] | undefined;
+  @Prop() readonly dataSource: string[] | undefined;
   selectedTags: string[] = [];
 
   toggle(tag: string) {
@@ -26,18 +26,18 @@ export default class Tags extends Vue {
       this.selectedTags.splice(index, 1);
 
     } else {this.selectedTags.push(tag);}
-this.$emit('update:value',this.selectedTags)
+    this.$emit('update:value', this.selectedTags);
   }
 
   create() {
     const name = window.prompt('请输入标签名');
-  if(name===''){
-    window.alert('标签不能为空')
-  }else{
-    if(this.dataSource!==undefined){
-      this.$emit ('update:value',[...this.dataSource,name])
+    if (name === '') {
+      window.alert('标签不能为空');
+    } else {
+      if (this.dataSource !== undefined) {
+        this.$emit('update:dataSource', [...this.dataSource, name]);
+      }
     }
-  }
   }
 }
 </script>
