@@ -3,12 +3,12 @@
     <Layout>
       <div class="tags">
         <router-link
-          class="tag"  v-for="tag in tags" :key="tag.id" :to="`/labels/edit/${tag.id}`"><span>{{ tag.name }}</span>
+            class="tag" v-for="tag in tags" :key="tag.id" :to="`/labels/edit/${tag.id}`"><span>{{ tag.name }}</span>
           <icon name="right"/>
         </router-link>
       </div>
-      <div class="newTag-wrapper">
-        <button class="newTag" @click="createTag">新建标签</button>
+      <div class="createTag-wrapper">
+        <Button class="createTag" @click="createTag">新建标签</Button>
       </div>
     </Layout>
   </div>
@@ -18,9 +18,12 @@
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import tagListModel from '@/models/tagListModel';
+import Button from '@/components/Button.vue';
 
 tagListModel.fetch();
-@Component
+@Component({
+  components: {Button}
+})
 export default class Labels extends Vue {
   tags = tagListModel.data;
 
@@ -59,12 +62,13 @@ export default class Labels extends Vue {
   }
 }
 
-.newTag {
+.createTag {
   background: #767676;
   color: white;
   border-radius: 4px;
   border: none;
-  padding: 8px 16px;
+  height: 40px;
+  padding: 0 16px;
 
   &-wrapper {
     text-align: center;
