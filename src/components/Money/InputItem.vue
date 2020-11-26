@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="notes">
+    <label class="InputItem">
       <span class="name">{{ this.fieldName }}</span>
       <input type="text"
              v-model="value"
@@ -30,9 +30,9 @@ export default class InputItem extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.notes {
+.InputItem {
   font-size: 14px;
-  background: #f5f5f5;
+
   display: flex;
   align-items: center;
 
@@ -43,7 +43,7 @@ export default class InputItem extends Vue {
 
 
   input {
-    height: 64px;
+    height: 40px;
     flex-grow: 1;
     border: none;
     background: transparent;
