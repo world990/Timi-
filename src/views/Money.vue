@@ -3,7 +3,7 @@
     <Layout class-prefix="layout">
       <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
       <Types :value.sync="record.type"/>
-      <Notes @update:value="onUpdateNotes"/>
+      <Notes field-name="备注" @update:value="onUpdateNotes" placeholder="在这里输入备注呀"/>
       <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
     </Layout>
   </div>
@@ -21,7 +21,7 @@ import tagListModel from '@/models/tagListModel';
 
 
 const recordList = recordListModel.fetch();
-const tagList=tagListModel.fetch()
+const tagList = tagListModel.fetch();
 
 @Component({
       components:
