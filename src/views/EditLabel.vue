@@ -6,10 +6,13 @@
       <span class="rightIcon"></span>
     </div>
     <div class="input-wrapper">
-      <InputItem :value="tag.name" field-name="标签名" placeholder="输入标签呀"/>
+      <InputItem :value="tag.name"
+                 field-name="标签名"
+                 placeholder="输入标签呀"
+                 @updata:value="update"/>
     </div>
     <div class="button-wrapper">
-      <Button>删除标签</Button>
+      <Button @click="remove">删除标签</Button>
     </div>
 
 
@@ -35,10 +38,22 @@ export default class EditLabel extends Vue {
     const tags = tagListModel.data;
     const tag = tags.filter(t => t.id === id)[0];
     if (tag) {
-      this.tag=tag
+      this.tag = tag;
     } else {
       this.$router.replace('/404');
     }
+  }
+
+  update(name: string) {
+    if (this.tag) {
+      tagListModel.update(this.tag.id, name);
+    }
+  }
+  remove(){
+    if(this.tag){
+      tagListModel.remove(this.tag.id)
+    }
+
   }
 }
 </script>
