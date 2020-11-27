@@ -16,12 +16,21 @@ Vue.component('Icon', Icon);
 
 window.tagList = tagListModel.fetch();
 window.createTag = (name: string) => {
-
   const message = tagListModel.create(name);
   if (message === 'duplicated') {
     window.alert('标签名重复啦！');
-  }
+  }//增
 };
+window.removeTag = (id: string) => {
+  return tagListModel.remove(id);
+};//删
+window.updateTag = (id: string, name: string) => {
+  return tagListModel.update(id, name);
+};//改
+window.findTag = (id: string) => {
+  return window.tagList.filter(t => t.id === id)[0];
+};//查
+
 new Vue({
   router: router,
   store,
