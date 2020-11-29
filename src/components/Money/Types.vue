@@ -1,8 +1,8 @@
 <template>
   <div>
     <ul class="types">
-      <li :class="value==='-'&&'selected'" @click="type='-'">支出</li>
-      <li :class="value==='+'&&'selected'" @click="type='+'">收入</li>
+      <li :class="value==='-'&&'selected'" @click="selectType('-')">支出</li>
+      <li :class="value==='+'&&'selected'" @click="selectType('+')">收入</li>
     </ul>
   </div>
 </template>
@@ -20,7 +20,6 @@ export default class Types extends Vue {
     if (type !== '-' && type !== '+') {
       throw new Error('type is unknown');
     }
-
     this.$emit('update:value', type);
   }
 

@@ -21,15 +21,23 @@ import Button from '@/components/Button.vue';
 
 
 @Component({
-  components: {Button}
+  components: {Button},
+
+
 })
 export default class Labels extends Vue {
-  tags = window.tagList
+  get tags() {
+    return this.$store.state.tagList;
+  }
+
+  created() {
+    this.$store.commit('fetchTags');
+  }
 
   createTag() {
     const name = window.prompt('请输入标签名');
     if (name) {
-     window.createTag(name)
+      this.$store.commit('createTag', name);
     }
   }
 
