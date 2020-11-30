@@ -36,6 +36,9 @@ export default class Statistics extends Vue {
       display: none;
     }
   }
+}
 
+::v-deep li.interval-tabs-item {
+  height: 40px;
 }
 </style>
