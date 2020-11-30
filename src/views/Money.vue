@@ -2,7 +2,8 @@
   <div>
     <Layout class-prefix="layout">
       <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
-      <Types :value.sync="record.type"/>
+      <Tabs :data-source="recordTypeList"
+            :value.sync="record.type"/>
       <div class="notes">
         <InputItem field-name="备注" @update:value="onUpdateNotes" placeholder="在这里输入备注呀"/>
       </div>
@@ -18,11 +19,13 @@ import Types from '@/components/Money/Types.vue';
 import InputItem from '@/components/Money/InputItem.vue';
 import Tags from '@/components/Money/Tags.vue';
 import {Component} from 'vue-property-decorator';
+import Tabs from '@/components/Tabs.vue';
+import typeList from '@/constants/ typeList';
 
 
 @Component({
       components:
-          {Tags, InputItem, Types, NumberPad},
+          {Tabs, Tags, InputItem, Types, NumberPad},
 
 
     },
@@ -32,6 +35,7 @@ export default class Money extends Vue {
     return this.$store.state.recordList;
   }
 
+  recordTypeList = typeList;
   record: RecordItem = {
     tags: [], notes: '', type: '-', amount: 0
   };
