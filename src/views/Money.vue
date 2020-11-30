@@ -15,7 +15,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import NumberPad from '@/components/Money/NumberPad.vue';
-import Types from '@/components/Money/Types.vue';
 import InputItem from '@/components/Money/InputItem.vue';
 import Tags from '@/components/Money/Tags.vue';
 import {Component} from 'vue-property-decorator';
@@ -25,7 +24,7 @@ import typeList from '@/constants/ typeList';
 
 @Component({
       components:
-          {Tabs, Tags, InputItem, Types, NumberPad},
+          {Tabs, Tags, InputItem, NumberPad},
 
 
     },
