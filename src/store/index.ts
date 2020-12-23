@@ -8,6 +8,8 @@ Vue.use(Vuex);  //use会把store绑到Vue.prototype上
 
 const store = new Vuex.Store({
   state: {
+    createTagError:null,
+    createRecordError:null,
     recordList: [],
     tagList: [],
     currentTag: undefined
@@ -18,12 +20,16 @@ const store = new Vuex.Store({
     },
     fetchRecords(state) {
       state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
+      if (!state.tagList || state.tagList.length === 0) {
+        store.commit('createTag', '衣');
+      }
     },
-    createRecord(state, record) {
-      const record2: RecordItem = clone(record);
+    createRecord(state, record: RecordItem) {
+      const record2 = clone(record);
       record2.createAt = new Date().toISOString();
       state.recordList.push(record2);
       store.commit('saveRecords');
+      window.alert('已保存');
     },
     saveRecords(state) {
       window.localStorage.setItem('recordList',
@@ -37,9 +43,11 @@ const store = new Vuex.Store({
       window.localStorage.setItem('tagList', JSON.stringify(state.tagList));
     },
     createTag(state, name: string) {
+      state.createTagError=null;
       const names = state.tagList.map(item => item.name);
       if (names.indexOf(name) >= 0) {
-        window.alert('标签名重复啦！');
+        state.createTagError=new Error('tag name duplicated')
+        return
       } else {
         const id = createId().toString();
         state.tagList.push({id, name: name});

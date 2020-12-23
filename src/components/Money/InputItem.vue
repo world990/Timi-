@@ -6,7 +6,7 @@
       <input type="text"
              :value="value"
              @input="onValueChanged($event.target.value)"
-             :placeholder='placeholder'>
+             :placeholder='this.placeholder'>
 
     </label>
   </div>
@@ -18,7 +18,7 @@ import {Component, Prop} from 'vue-property-decorator';
 
 @Component
 export default class InputItem extends Vue {
-  @Prop({default: ''}) value!: string;
+  @Prop({default: ''}) readonly value!: string;
 
   @Prop({required: true}) fieldName!: string;
   @Prop() placeholder?: string;
